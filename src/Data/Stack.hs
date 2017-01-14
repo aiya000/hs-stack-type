@@ -1,5 +1,11 @@
 -- | The basic stack type
-module Data.Stack where
+module Data.Stack
+  ( Stack
+  , push
+  , pop
+  , runStack
+  , stack
+  ) where
 
 import Control.Monad.Trans.State.Lazy (State, get, put, runState, state)
 
