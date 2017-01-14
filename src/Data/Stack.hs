@@ -1,7 +1,7 @@
 -- | The basic stack type
 module Data.Stack where
 
-import Control.Monad.Trans.State.Lazy (State, get, put, runState)
+import Control.Monad.Trans.State.Lazy (State, get, put, runState, state)
 
 type Stack s a = State [s] a
 
@@ -20,3 +20,6 @@ pop = do
 
 runStack :: Stack s a -> [s] -> (a, [s])
 runStack = runState
+
+stack :: ([s] -> (a, [s])) -> Stack s a
+stack = state
