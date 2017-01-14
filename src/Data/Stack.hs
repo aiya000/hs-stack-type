@@ -5,9 +5,10 @@ module Data.Stack
   , pop
   , runStack
   , stack
+  , modifyStack
   ) where
 
-import Control.Monad.Trans.State.Lazy (State, get, put, runState, state)
+import Control.Monad.Trans.State.Lazy (State, get, put, runState, state, modify)
 
 type Stack s a = State [s] a
 
@@ -29,3 +30,6 @@ runStack = runState
 
 stack :: ([s] -> (a, [s])) -> Stack s a
 stack = state
+
+modifyStack :: ([s] -> [s]) -> Stack s ()
+modifyStack = modify
