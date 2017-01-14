@@ -4,6 +4,8 @@ module Data.Stack
   , push
   , pop
   , runStack
+  , execStack
+  , evalStack
   , stack
   , modifyStack
   ) where
@@ -27,6 +29,12 @@ pop = do
 
 runStack :: Stack s a -> [s] -> (a, [s])
 runStack = runState
+
+execStack :: Stack s a -> [s] -> [s]
+execStack = (snd .) . runState
+
+evalStack :: Stack s a -> [s] -> a
+evalStack = (fst .) . runState
 
 stack :: ([s] -> (a, [s])) -> Stack s a
 stack = state
